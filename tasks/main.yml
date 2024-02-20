@@ -1,5 +1,10 @@
 ---
-# tasks file for zsh_role
+- name: Install curl
+  become: true
+  ansible.builtin.package:
+    name: curl
+    state: present
+
 - name: Install ZSH
   become: true
   ansible.builtin.package:
@@ -11,6 +16,11 @@
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     shell: /bin/zsh
+
+- name: Install chezmoi
+  ansible.builtin.shell: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
+  args:
+    creates: "~/.local/bin/chezmoi"
 
 - name: Copy zshrc
   ansible.builtin.copy:
