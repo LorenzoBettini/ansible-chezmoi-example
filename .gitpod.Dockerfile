@@ -15,3 +15,7 @@ RUN pip install ansible molecule "molecule-plugins[docker]" yamllint ansible-lin
 # install-packages is a wrapper for `apt` that helps skip a few commands in the docker env.
 RUN sudo install-packages \
     rsync
+
+# we also install chezmoi in the Gitpod Ubuntu to do some experiments
+# and to build the chezmoi dotfiles from within Gitpod
+RUN sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
