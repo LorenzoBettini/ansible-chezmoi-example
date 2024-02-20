@@ -18,4 +18,4 @@ RUN sudo install-packages \
 
 # we also install chezmoi in the Gitpod Ubuntu to do some experiments
 # and to build the chezmoi dotfiles from within Gitpod
-RUN sudo sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
