@@ -8,11 +8,9 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: instance-arch
-    image: arch-ansible
-    platform: linux/amd64
-    dockerfile: ./Dockerfile
-    build_image: true
+  - name: instance
+    image: fedora:39
+    pre_build_image: true
 provisioner:
   name: ansible
   playbooks:

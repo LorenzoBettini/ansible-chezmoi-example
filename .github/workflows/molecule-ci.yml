@@ -21,7 +21,7 @@ jobs:
         scenario:
           - default
           - ubuntu
-          - arch
+          - fedora
 
     steps:
       - name: Check out the codebase.
