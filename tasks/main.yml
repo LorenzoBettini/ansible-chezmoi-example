@@ -14,6 +14,6 @@
 
 - name: Copy zshrc
   ansible.builtin.copy:
-    src: zshrc
+    src: dotfiles/dot_zshrc
     dest: ~/.zshrc
     mode: 0644
