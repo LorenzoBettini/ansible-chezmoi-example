@@ -17,18 +17,17 @@
     name: "{{ ansible_user_id }}"
     shell: /bin/zsh
 
-- name: Install git
-  become: true
-  ansible.builtin.package:
-    name: git
-    state: present
-
+# Note: Neovim installed via apt in Ubuntu is too old for lazy.vim
+# (lazy.nvim requires Neovim >= 0.8.0)
 - name: Install Neovim and other packages 
   become: true
   ansible.builtin.package:
     name:
     - neovim
     - fzf
+    - git # required by lazy
+    - gcc # required by neovim-treesitter
+    - make # required by neovim-treesitter
     state: present
 
 - name: Install chezmoi
