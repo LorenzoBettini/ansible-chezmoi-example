@@ -1,2 +1,3 @@
 ---
 # vars file for zsh_role
+chezmoi_init_url: https://github.com/LorenzoBettini/ansible-chezmoi-dotfiles-example

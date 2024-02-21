@@ -22,8 +22,8 @@
   args:
     creates: "~/.local/bin/chezmoi"
 
-- name: Copy zshrc
-  ansible.builtin.copy:
-    src: dotfiles/dot_zshrc
-    dest: ~/.zshrc
-    mode: 0644
+- name: Initialize chezmoi
+  ansible.builtin.command: "~/.local/bin/chezmoi init --apply --verbose {{ chezmoi_init_url }}"
+  when: chezmoi_init_url
+  args:
+    creates: "~/.local/share/chezmoi"
