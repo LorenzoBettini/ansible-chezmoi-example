@@ -17,3 +17,21 @@
   - name: Assert shell is zsh
     ansible.builtin.assert:
       that: "user_shell.stdout == '/bin/zsh'"
+
+  - name: Get current user's home
+    ansible.builtin.shell: >
+      set -o pipefail && \
+      grep -E "^{{ ansible_user_id }}:" /etc/passwd | awk -F: '{ print $6 }'
+    register: user_home
+    args:
+      executable: /bin/bash
+    changed_when: false
+
+  - name: Check if ~/.zshrc is present
+    ansible.builtin.stat:
+      path: "{{ user_home.stdout }}/.zshrc"
+    register: result
+
+  - name: Assert ~/.zshrc is present
+    ansible.builtin.assert:
+      that: "result.stat.exists"
