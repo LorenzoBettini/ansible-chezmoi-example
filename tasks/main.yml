@@ -17,6 +17,20 @@
     name: "{{ ansible_user_id }}"
     shell: /bin/zsh
 
+- name: Install git
+  become: true
+  ansible.builtin.package:
+    name: git
+    state: present
+
+- name: Install Neovim and other packages 
+  become: true
+  ansible.builtin.package:
+    name:
+    - neovim
+    - fzf
+    state: present
+
 - name: Install chezmoi
   ansible.builtin.shell: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b ~/.local/bin
   args:
