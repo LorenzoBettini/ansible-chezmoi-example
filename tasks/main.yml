@@ -36,7 +36,6 @@
     creates: "~/.local/bin/chezmoi"
 
 - name: Initialize chezmoi
-  ansible.builtin.command: '~/.local/bin/chezmoi init --no-tty --promptString "window manager=kde" --apply --verbose {{ chezmoi_init_url }}'
-  when: chezmoi_init_url
+  ansible.builtin.command: '~/.local/bin/chezmoi init --no-tty --promptChoice "Which Window Manager=kde" --apply --verbose {{ chezmoi_init_url }}'
   args:
     creates: "~/.local/share/chezmoi"
